@@ -7,7 +7,9 @@ import java.util.Map;
 @Data
 public class WxTemplate {
 
-    private String templateId;
-    private String toUser;
+    private String template_id;
+    private String touser;
+    private String url;
+    private String topcolor;
     private Map<String,TemplateData> data;
 }
