@@ -18,7 +18,7 @@ public class Constants {
     //模板ID
     public static String templateId_ZAO = "ehdueSiJ2AxMjHwEl-K-KFvnZfOs3iuK5biGByKZM90";
     public static String templateId_WU = "hqKugwhT0rIchxOPwYcba4mkMKWfsLKVVWZ6t4jSyrY";
-    public static String templateId_WAN = "Nf6gKbYCQl0xqDoSkBpF3_bSe7WUgBBOGEOq48N4z0g";
+    public static String templateId_WAN = "44m_zVUHe4LNX9KuSduu9DYgkVBborMiysKI8RWgjJg";
 
     public static String city = "北京市";
     public static String cityCode = "101010100";
@@ -27,6 +27,7 @@ public class Constants {
     // 日期
     public static String festival1 = "中秋节";
     public static String date1 = "2022-09-10";
+    public static String day = "2022-08-25";
     public static String festival2 = "国庆节";
     public static String date2 = "2022-10-01";
     public static String birthday = "2023-06-13";
@@ -34,9 +35,9 @@ public class Constants {
 
 
     // 谚语
-    public static String proverb = "";
-    public static String proverbs = "";
+    public static String proverb = "Good good study, day day up.";
+    public static String proverbs = "好好学习，天天向上。";
 
     // 备注
-    public static String remark = "";
+    public static String remark = "晚安啦~ Have a good night~";
 }

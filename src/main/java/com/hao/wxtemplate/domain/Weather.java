@@ -1,16 +1,11 @@
 package com.hao.wxtemplate.domain;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
 @Data
 public class Weather {
 
-    private String city;
-    private String cityid;
-    private String temp1;
-    private String temp2;
-    private String weather;
-    private String img1;
-    private String img2;
-    private String ptime;
+    @SerializedName("weatherinfo")
+    private WeatherInfo weatherInfo;
 }

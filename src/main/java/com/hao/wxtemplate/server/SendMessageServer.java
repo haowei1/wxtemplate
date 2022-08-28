@@ -39,7 +39,7 @@ public class SendMessageServer {
         Map<String, TemplateData> m = new HashMap<>();
         TemplateData name = new TemplateData();
         name.setColor(CommonUtil.getRandomColor());
-        name.setValue(names[new Random().nextInt(7)]);
+        name.setValue(names[new Random().nextInt(names.length)]);
         m.put("name", name);
         TemplateData date = new TemplateData();
         date.setColor(CommonUtil.getRandomColor());
@@ -47,7 +47,7 @@ public class SendMessageServer {
         m.put("date", date);
         TemplateData day = new TemplateData();
         day.setColor(CommonUtil.getRandomColor());
-        day.setValue("2");
+        day.setValue((Integer.parseInt(CommonUtil.getDateCount(Constants.day, CommonUtil.getDate("yyyy-MM-dd")))+1)+"");
         m.put("day", day);
         TemplateData calendar = new TemplateData();
         calendar.setColor(CommonUtil.getRandomColor());
@@ -63,7 +63,7 @@ public class SendMessageServer {
         m.put("city", city);
         TemplateData weather = new TemplateData();
         weather.setColor(CommonUtil.getRandomColor());
-        weather.setValue("晴间多云 17°~28°");
+        weather.setValue(getWeather());
         m.put("weather", weather);
         TemplateData festival1 = new TemplateData();
         festival1.setColor(CommonUtil.getRandomColor());
@@ -71,7 +71,7 @@ public class SendMessageServer {
         m.put("festival1", festival1);
         TemplateData date1 = new TemplateData();
         date1.setColor(CommonUtil.getRandomColor());
-        date1.setValue(CommonUtil.getDateCount(date.getValue(), Constants.date1));
+        date1.setValue(CommonUtil.getDateCount(CommonUtil.getDate("yyyy-MM-dd"), Constants.date1));
         m.put("date1", date1);
         TemplateData festival2 = new TemplateData();
         festival2.setColor(CommonUtil.getRandomColor());
@@ -79,11 +79,11 @@ public class SendMessageServer {
         m.put("festival2", festival2);
         TemplateData date2 = new TemplateData();
         date2.setColor(CommonUtil.getRandomColor());
-        date2.setValue(CommonUtil.getDateCount(date.getValue(), Constants.date2));
+        date2.setValue(CommonUtil.getDateCount(CommonUtil.getDate("yyyy-MM-dd"), Constants.date2));
         m.put("date2", date2);
         TemplateData birthday = new TemplateData();
         birthday.setColor(CommonUtil.getRandomColor());
-        birthday.setValue(CommonUtil.getDateCount(date.getValue(), Constants.birthday));
+        birthday.setValue(CommonUtil.getDateCount(CommonUtil.getDate("yyyy-MM-dd"), Constants.birthday));
         m.put("birthday", birthday);
         TemplateData proverb = new TemplateData();
         proverb.setColor(CommonUtil.getRandomColor());
@@ -133,20 +133,19 @@ public class SendMessageServer {
         return token;
     }
 
-    public static String getWeather() {
-        RestTemplate restTemplate1 = new RestTemplate();
-        WeatherInfo forObject = restTemplate1.getForObject(Constants.weatherUrl, WeatherInfo.class);
-        System.out.println(forObject);
-        List<Weather> weatherinfo = forObject.getWeatherinfo();
-        Weather weather = weatherinfo.get(0);
-        System.out.println(weather.toString());
-//        Weather weather1 = new Gson().fromJson(weather, Weather.class);
-        return weather.getCity();
+    /**
+     * 获取天气信息
+     * @return
+     */
+    public String getWeather() {
+        String weatherStr = restTemplate.getForObject(Constants.weatherUrl, String.class);
+        Weather weather = new Gson().fromJson(weatherStr, Weather.class);
+        WeatherInfo weatherInfo = weather.getWeatherInfo();
+        return weatherInfo.getWeather() + " " + weatherInfo.getTemp1() + "~" + weatherInfo.getTemp2();
     }
 
     public static void main(String[] args) {
-        String week = getWeather();
-        System.out.println(week);
+        System.out.println(new Random().nextInt(2));
     }
 
 
